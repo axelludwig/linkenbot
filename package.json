@@ -1,0 +1,37 @@
+{
+  "name": "linkenbot",
+  "version": "1.0.0",
+  "description": "discord bot for fun",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "linkenparis",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.3",
+    "avconv": "^3.1.0",
+    "discord-tts": "^1.0.3",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-binaries": "^3.2.2-3",
+    "ffmpeg-static": "^4.2.7",
+    "google-tts-api": "^2.0.1",
+    "node-keylogger": "0.0.1",
+    "opusscript": "0.0.7"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axelludwig/linkenbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axelludwig/linkenbot/issues"
+  },
+  "homepage": "https://github.com/axelludwig/linkenbot#readme"
+}

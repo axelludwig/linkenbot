@@ -36,8 +36,33 @@ io.on("connection", socket => {
   socket.on('my response', (e) => {
     // console.log(e)
     // bruh(bot, null);
-    getTextChannels(bot);
+    // getTextChannels(bot);
+    console.log('ok');
   })
+
+  socket.on('command', (e) => {
+    console.log('received code ' + e.code);
+    if ('11' == e.code) {
+      join(bot);
+    }
+    else if ('12' == e.code) {
+      leave(bot)
+    }
+    else if ('13' == e.code) {
+      writeInChat(bot, '!play disappointed')
+
+      // bruh(bot, null)
+    }
+    else if ('40' == e.code) {
+      // bruh(bot, null)
+
+    }
+    // console.log(e)
+    // bruh(bot, null);
+    // getTextChannels(bot);
+  })
+
+
 
 
   socket.on('test', (e) => {
@@ -79,7 +104,7 @@ bot.on("message", (msg) => {
 
     // test
     if (msg.content === "test") {
-      test(bot);
+      writeInChat(bot, 'i robot')
     }
 
     // lait de coco
@@ -147,7 +172,7 @@ bot.on("message", (msg) => {
          ⠄⠄⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄
          ⠄⢀⢸⣿⣷⣤⣤⣤⣬⣙⣛⢿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡍⠄⠄⢀⣤⣄⠉⠋⣰
          ⠄⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤
-         ⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗
+         ⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗♀♀♀
          ⢀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠄
          ⢸⣿⣦⣌⣛⣻⣿⣿⣧⠙⠛⠛⡭⠅⠒⠦⠭⣭⡻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠄
          ⠘⣿⣿⣿⣿⣿⣿⣿⣿⡆⠄⠄⠄⠄⠄⠄⠄⠄⠹⠈⢋⣽⣿⣿⣿⣿⣵⣾⠃⠄
@@ -273,14 +298,30 @@ function getTextChannels(bot) {
   return list;
 }
 
-function getTextChannelFromName(channelName) {
+function getTextChannelFromName(textChannel) {
+  var channel;
   channels = getTextChannels(bot);
-  console.log(channels);
+  channels.forEach((c) => {
+    if (textChannel == c.name) channel = c
+  })
+  return channel;
+}
+
+function join(bot) {
+  var user = getMyChannel(bot);
+  user.voice.channel.join()
+}
+
+function leave(bot) {
+  var user = getMyChannel(bot);
+  user.voice.channel.leave()
 }
 
 function writeInChat(bot, text) {
-  if (!textChannel) msg.channel.send(`choisis d'abord un channel avec la commande ^^channel`)
-  else {
-
+  var channel = getTextChannelFromName(textChannel)
+  if (!textChannel){
+    // channel.send(`choisis d'abord un channel avec la commande ^^channel`)
+    bruh(bot, null)
   }
+  else channel.send(text)
 }

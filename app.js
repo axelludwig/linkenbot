@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-const port = 8001;
+const port = 8000;
 
 app.use(express.json());
 // io.origins('*:*');

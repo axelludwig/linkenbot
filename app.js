@@ -31,47 +31,11 @@ io.on("connection", socket => {
   console.log("client connected")
 
   socket.on('command', (e) => {
+    if ('join' == e.code) discord.join(client);
+    else if ('leave' == e.code) discord.leave(client);
+    else if ('stop' == e.code) discord.stop(client);
+    else commandmanager.manageSound(client, e.code)
     console.log('received code ' + e.code);
-    var code = Number(e.code);
-
-    switch (code) {
-      case 77:
-        discord.join(client);
-        break;
-      case 88:
-        discord.leave(client);
-        break;
-      case 99:
-        discord.stop()
-        break;
-      case 11:
-        // commandmanager.bruh(client, null)
-        commandmanager.manageSound(client, 'bruh')
-        break;
-      case 12:
-        commandmanager.manageSound(client, 'fart')
-        break;
-      case 13:
-        commandmanager.manageSound(client, 'tagueule')
-        break;
-      case 14:
-        sslolsoft();
-        break;
-      case 15:
-        sslol();
-        break;
-      case 16:
-        discord.writeInChat('!play yoking')
-        break;
-      case 17:
-        discord.writeInChat('!play botdiff')
-        break;
-      case 16:
-        discord.writeInChat('!play yoking')
-        break;
-      default:
-        break;
-    }
     socket.on("disconnect", () => console.log("disconnected"));
   });
 })

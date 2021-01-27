@@ -52,7 +52,7 @@
         }
 
       }
-      else if (msg.content.includes("deco") || msg.content.includes("^^leave")  || msg.content.includes("bouge") || msg.content.includes("degage") || msg.content.includes("dégage")
+      else if (msg.content.includes("deco") || msg.content.includes("^^leave") || msg.content.includes("bouge") || msg.content.includes("degage") || msg.content.includes("dégage")
         || (msg.content.includes("pars") && msg.content.includes("bot"))) {
         discord.leave(client);
       } else if (
@@ -73,14 +73,16 @@
           msg.channel.send(t);
         }
       }
-    }13
+    } 13
   }
 
   module.exports.manageSound = function (client, sound) {
     if (sounds.includes(sound)) {
       discord.playSoundChannel(client, sound + '.mp3')
+      discord.setlastBotCommand('linken');
     } else if (writeSounds.includes(sound)) {
       discord.writeInChat(client, '!play ' + sound)
+      discord.setlastBotCommand('guikss');
     }
   }
 
@@ -157,7 +159,6 @@
   }
 
 }());
-
 
 var isListeningToTextChannel = [];
 var cancermode = false;

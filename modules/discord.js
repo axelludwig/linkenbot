@@ -14,8 +14,9 @@ const { lastIndexOf } = require("ffmpeg-static");
         user.voice.channel.leave()
     }
 
-    module.exports.stop = function () {
-        dispatcher.destroy();
+    module.exports.stop = function (client) {
+        if ('linken' == lastBotCommand) dispatcher.destroy();
+        else if ('guikss' == lastBotCommand) this.stopguikss(client)
     }
 
     module.exports.writeInChat = function (client, text) {
@@ -62,7 +63,14 @@ const { lastIndexOf } = require("ffmpeg-static");
         return user;
     }
 
+    module.exports.stopguikss = function (client) {
+        var channel = this.getTextChannelFromName(client)
+        if (!textChannel) console.log('pas de channel choisi');    // channel.send(`choisis d'abord un channel avec la commande ^^channel`)
+        else channel.send('!stop')
+    }
+
     module.exports.playSoundWithText = function (client, msg, filename, text) {
+        this.setlastBotCommand('linken');
         var channelId = msg.member.voice.channelID;
         var channel = client.channels.cache.get(channelId);
         try {
@@ -89,6 +97,11 @@ const { lastIndexOf } = require("ffmpeg-static");
     module.exports.setTextChannel = function (t) {
         setTextChannel(t)
     }
+
+    module.exports.setlastBotCommand = function (arg) {
+        lastBotCommand = arg;
+    }
+
 }());
 
 var textChannel;
@@ -96,4 +109,5 @@ function setTextChannel(t) {
     textChannel = t;
 }
 
+var lastBotCommand;
 var dispatcher;
